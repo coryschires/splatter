@@ -4,27 +4,36 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Test Project</title>
+<title>jQuery Splatter</title>
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="src/jquery.splatter.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<style type="text/css" media="screen">
+  body { overflow: hidden; }
+  .splatter_box { font-family: Helvetica, sans-serif; }
+
+  #animated_colors.splatter_box .splat {
+    transition: color 0.5s linear;
+    -moz-transition: color 0.5s linear;
+    -o-transition: color 0.5s linear;
+    -webkit-transition: color 0.5s linear;
+    cursor: default;
+  }
+</style>
 
 <!-- javascripts -->
 <script src="lib/jquery-local.js" type="text/javascript" charset="utf-8"></script>
 <script src="src/jquery.splatter.js" type="text/javascript" charset="utf-8"></script>
 
-
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    $('#splatter_box_1').splatter({
+
+    
+    $('#animated_colors').splatter({
       max_font_size: 50,
       width: 550,
       height: 400,
       custom_attributes: [
-        {
-          name: "data-hover_color",
-          values: ['#f68a00', '#069', '#a70', '#090', '#ff1493', '#0066CC', '#ff1493']
-        }
+        { name: "data-hover_color", values: ['#f68a00', '#069', '#a70', '#090', '#ff1493', '#0066CC', '#ff1493'] }
       ],
       hover_on: function(splat) {
         var original_color = splat.css('color');
@@ -46,7 +55,7 @@
 </head>
 <body>
 
-  <div id="splatter_box_1"></div>
+  <div id="animated_colors"></div>
 
 </body>
 </html>
