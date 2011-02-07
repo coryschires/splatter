@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Test Project</title>
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="src/jquery.splatter.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<!-- javascripts -->
+<script src="lib/jquery-local.js" type="text/javascript" charset="utf-8"></script>
+<script src="src/jquery.splatter.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#splatter_box').splatter({
+      max_font_size: 50,
+      width: 550,
+      height: 400,
+      colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
+      splats: ['Ruby', 'JavaScript', 'HAML', 'Python', 'HTML5', 'CCS3', 'SASS', 'RSpec', 'Cucumber', 'Factory Girl', 'jQuery', 'Process.js', 'Jasmine', 'BDD', 'Node.js']
+    });
+  });
+</script>
+
+
+</head>
+<body>
+
+  <div id="splatter_box"></div>
+
+</body>
+</html>
