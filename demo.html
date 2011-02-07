@@ -16,10 +16,26 @@
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    $('#splatter_box').splatter({
+    $('#splatter_box_1').splatter({
       max_font_size: 50,
       width: 550,
       height: 400,
+      custom_attributes: [
+        {
+          name: "data-hover_color",
+          values: ['#f68a00', '#069', '#a70', '#090', '#ff1493', '#0066CC', '#ff1493']
+        }
+      ],
+      hover_on: function(splat) {
+        var original_color = splat.css('color');
+        var hover_color = splat.attr('data-hover_color')
+        splat.css('color', hover_color).attr('data-hover_color', original_color);
+      },
+      hover_off: function(splat) {
+        var original_color = splat.css('color');
+        var hover_color = splat.attr('data-hover_color');
+        splat.css('color', hover_color).attr('data-hover_color', original_color);
+      },
       colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
       splats: ['Ruby', 'JavaScript', 'HAML', 'Python', 'HTML5', 'CCS3', 'SASS', 'RSpec', 'Cucumber', 'Factory Girl', 'jQuery', 'Process.js', 'Jasmine', 'BDD', 'Node.js']
     });
@@ -30,7 +46,7 @@
 </head>
 <body>
 
-  <div id="splatter_box"></div>
+  <div id="splatter_box_1"></div>
 
 </body>
 </html>

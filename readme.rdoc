@@ -1,0 +1,3 @@
+== jQuery Splatter Plugin
+
+Don't use this plugin. Not ready.

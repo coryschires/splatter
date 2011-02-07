@@ -17,8 +17,11 @@
 
   $.splatter = {
     defaults: {
+      custom_attributes: [],
       colors: [],
       splats: [],
+      hover_on: function() {},
+      hover_off: function() {},
       splat_count: 20,
       min_font_size: 20,
       max_font_size: 300,
@@ -66,6 +69,23 @@
             
             var determine_splat_type = function() {
               return config.splats.length > 0 ? config.splats.pop() : '*';
+            };
+            
+            var apply_custom_attributes = function(splat) {
+              if (config.custom_attributes.length > 0) {
+                $.each(config.custom_attributes, function(index, attr) {
+                  var value = attr.values[Math.floor( Math.random() * attr.values.length)]
+                  splat.attr(attr.name, value);
+                });
+              }
+            };
+            
+            var apply_hover_events = function(splat) {
+              splat.hover(function() {
+                config.hover_on(splat);
+              }, function() {
+                config.hover_off(splat);
+              });
             }
             
             // begin plugin loop
@@ -90,7 +110,12 @@
                       'top': randomized_top(),
                       'left': randomized_right(),
                       'color': radomized_color()
-                    })
+                    });
+                  
+                  apply_custom_attributes(splat);
+                  
+                  apply_hover_events(splat);
+                  
                   splatter_box.append(splat);
                 };
                 

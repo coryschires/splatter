@@ -132,6 +132,26 @@ describe("jquery.splatter", function() {
         expect(['#cccccc', '#e0e0e0', '#333333', '#666666', '#999999']).toContain(rgb2hex(color));
       });
     });
+
+    describe('custom attributes', function() {
+      it("should should apply the specified attribute name to each splat", function() {
+        var splat = callee.splatter({ 
+          custom_attributes: [{name: "data-custom", values: ['bar']}]
+        }).find('.splat').first();
+        expect(splat).toHaveAttr('data-custom');
+      });
+      it("should should randomly apply one of the specified values to the attribute", function() {
+        var splats = callee.splatter({ 
+          custom_attributes: [{name: "data-custom", values: ['foo', 'bar', 'baz']}]
+        }).find('.splat');
+        
+        splats.each(function() {
+          expect(['foo', 'bar', 'baz']).toContain( $(this).attr('data-custom') );
+        });
+      });
+    });
     
+    
+
   });
 });
