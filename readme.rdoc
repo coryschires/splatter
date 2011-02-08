@@ -1,3 +1,34 @@
-== jQuery Splatter Plugin
+== jQuery Splatter Plugin.
 
-Don't use this plugin. Not ready.
+Splatter is a jQuery plugin which applies a random positions, size, and color to elements on a page. The most basic implementation adds randomly colored and positioned asterisks to the page:
+
+[INSERT IMAGE OF BASIC EXAMPLE]
+
+
+== Configuration options.
+
+Splatter has lots of configuration options but most of them are pretty simple. None of them are required:
+
+    $('#splatter_box).splatter({
+      custom_attributes: [],      // specify custom attributes to add to splats which can be used to store data
+      colors: [],                 // specify the colors to be randomly applied to the splats
+      splats: [],                 // specify strings to be used as splats – defaults to * 
+      hover_on: function() {},    // add a custom function to be called when hovering on a splat
+      hover_off: function() {},   // add a custom function to be called when hovering off a splat
+      splat_count: 20,            // number of splats that will be drawn
+      min_font_size: 20,          // minimum font size for splats
+      max_font_size: 300,         // maximum font size for splats
+      height: $(window).height(), // height of splatter
+      width: $(window).width()    // width of splatter
+    });
+
+Most of these should be fairly obvious but let's go into a bit more detail on how to use custom attributes. Essentially, custom attributes allow you to randomly apply data attributes to each splat. The st
+
+    $('#splatter_box).splatter({
+      custom_attributes: [
+        { name: "data-hover_color", values: ['#f68a00', '#069', '#a70'] },
+        { name: "data-slide_position", values: ['20', '50', '100'] }
+      ]
+    });
+    
+Often custom attributes go work in conjunction with custom hover events, allowing you to use jQuery to fetch these custom values and do something interesting (e.g. fade in a difference color, animate a splats position, or make a splat randomly rotate)
