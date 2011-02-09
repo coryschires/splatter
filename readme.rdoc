@@ -1,13 +1,22 @@
 == jQuery Splatter Plugin.
 
-Splatter is a jQuery plugin which applies a random positions, size, and color to elements on a page. The most basic implementation adds randomly colored and positioned asterisks to the page:
+Splatter is a jQuery plugin which applies a random position, size, and color to elements on a element. The most basic implementation adds randomly colored and positioned asterisks to the element:
 
-[INSERT IMAGE OF BASIC EXAMPLE]
+http://coryschires-blog-post-images.s3.amazonaws.com/splatter/basic_splatter.jpg
+
+To see some working examples, check out the {demo page}[url-to-demos].
+
+== Including the necessary scripts.
+
+Add these to the <tt>head</tt> of your page:
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="jquery.splatter.js" type="text/javascript" charset="utf-8"></script>
 
 
 == Configuration options.
 
-Splatter has lots of configuration options but most of them are pretty simple. None of them are required:
+Splatter has lots of configuration options but most of them are pretty simple and none of them are required:
 
     $('#splatter_box).splatter({
       custom_attributes: [],      // specify custom attributes to add to splats which can be used to store data
@@ -22,7 +31,7 @@ Splatter has lots of configuration options but most of them are pretty simple. N
       width: $(window).width()    // width of splatter
     });
 
-Most of these should be fairly obvious but let's go into a bit more detail on how to use custom attributes. Essentially, custom attributes allow you to randomly apply data attributes to each splat. The st
+Most of these should be fairly obvious but let's go into a bit more detail on how to use custom attributes. Custom attributes allow you to apply data attributes with random values to each splat. They are specified as an array of objects:
 
     $('#splatter_box).splatter({
       custom_attributes: [
@@ -31,4 +40,37 @@ Most of these should be fairly obvious but let's go into a bit more detail on ho
       ]
     });
     
-Often custom attributes go work in conjunction with custom hover events, allowing you to use jQuery to fetch these custom values and do something interesting (e.g. fade in a difference color, animate a splats position, or make a splat randomly rotate)
+Each custom attribute object should have two keys: a <tt>name</tt> and <tt>values</tt>. The <tt>name</tt> will be used as the attribute's name. The <tt>values</tt> key takes an array of possible values. The actual value for any given custom attribute is randomly selected from the <tt>values</tt> array.
+
+So the the above example might create splats that look like:
+
+    <span class="splat" data-slide_position="20" data-hover_color="#f68a00">*</span>
+    <span class="splat" data-slide_position="100" data-hover_color="#069">*</span>
+    
+Often custom attributes go work in conjunction with custom hover events, allowing you to use jQuery to fetch these custom values and do something interesting (e.g. fade in a difference color, animate a splats position, or make a splat randomly rotate). For example, let's create 100 splats in shades of gray that fade into random colors on hover:
+
+    $('#animated_colors').splatter({
+      width: 700,
+      height: 250,
+      splat_count: 100,
+      colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
+      custom_attributes: [
+        { name: "data-hover_color", values: ['#f68a00', '#069', '#a70', '#090', '#ff1493', '#0066CC', '#ff1493', '#F0E356'] }
+      ],
+      hover_on: function(splat) {
+        var original_color = splat.css('color');
+        var hover_color = splat.attr('data-hover_color')
+        splat.css('color', hover_color).attr('data-hover_color', original_color);
+      },
+      hover_off: function(splat) {
+        var original_color = splat.css('color');
+        var hover_color = splat.attr('data-hover_color');
+        splat.css('color', hover_color).attr('data-hover_color', original_color);
+      }
+    });
+    
+Which will create something like:
+
+http://coryschires-blog-post-images.s3.amazonaws.com/splatter/hover_splatter.jpg
+
+If you need additional help understanding the various configuration options, check out the {live demos}[demos-url] as well as the {unit tests}[tests page url]

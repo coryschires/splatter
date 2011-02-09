@@ -32,7 +32,7 @@
 </style>
 
 <!-- javascripts -->
-<script src="lib/jquery-local.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="src/jquery.splatter.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript" charset="utf-8">
@@ -48,7 +48,7 @@
     $('#many_splatters').splatter({
       height: 250,
       width: 700,
-      splat_count: 150
+      splat_count: 120
     });
 
     // 3) word_splatter
@@ -72,11 +72,10 @@
     
     // 5) animated colors
     $('#animated_colors').splatter({
-      max_font_size: 50,
       width: 700,
       height: 250,
+      splat_count: 100,
       colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
-          splats: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Consectetur", "Adipisicing", "Elit", "Sed", "Do", "Eiusmod", "Tempor", "Incididunt", "Ut", "Labore", "Et", "Dolore", "Magna", "Aliqua", "Ut", "Enim", "Ad", "Minim", "Veniam", "Quis", "Nostrud", "Exercitation", "Ullamco", "Laboris", "Nisi", "Ut", "Aliquip", "Ex", "Ea", "Commodo", "Consequat"],
       custom_attributes: [
         { name: "data-hover_color", values: ['#f68a00', '#069', '#a70', '#090', '#ff1493', '#0066CC', '#ff1493', '#F0E356'] }
       ],
@@ -103,7 +102,7 @@
       ],
       hover_on : function(splat) {
         var rotation_degrees = splat.attr('data-rotation_degrees');
-        splat.css('-webkit-transform', rotation_degrees)
+        splat.css('-webkit-transform', rotation_degrees);
       },
       hover_off : function(splat) {
         splat.css('-webkit-transform', 'rotate(0deg)');
@@ -181,9 +180,10 @@
       <pre>
         // javascript
         $('#animated_colors').splatter({
-          max_font_size: 50,
           width: 700,
           height: 250,
+          splat_count: 40,
+          colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
           custom_attributes: [
             { name: "data-hover_color", values: ['#f68a00', '#069', '#a70', '#090', '#ff1493', '#0066CC', '#ff1493', '#F0E356'] }
           ],
@@ -196,9 +196,7 @@
             var original_color = splat.css('color');
             var hover_color = splat.attr('data-hover_color');
             splat.css('color', hover_color).attr('data-hover_color', original_color);
-          },
-          colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
-          splats: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Consectetur", "Adipisicing", "Elit", "Sed", "Do", "Eiusmod", "Tempor", "Incididunt", "Ut", "Labore", "Et", "Dolore", "Magna", "Aliqua", "Ut", "Enim", "Ad", "Minim", "Veniam", "Quis", "Nostrud", "Exercitation", "Ullamco", "Laboris", "Nisi", "Ut", "Aliquip", "Ex", "Ea", "Commodo", "Consequat"]
+          }
         });
       });
     

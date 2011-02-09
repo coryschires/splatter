@@ -17,16 +17,16 @@
 
   $.splatter = {
     defaults: {
-      custom_attributes: [],
-      colors: [],
-      splats: [],
-      hover_on: function() {},
-      hover_off: function() {},
-      splat_count: 20,
-      min_font_size: 20,
-      max_font_size: 300,
-      height: $(window).height(),
-      width: $(window).width()
+      custom_attributes: [],      // specify custom attributes to add to splats which can be used to store data
+      colors: [],                 // specify the colors to be randomly applied to the splats
+      splats: [],                 // specify strings to be used as splats – defaults to * 
+      hover_on: function() {},    // add a custom function to be called when hovering on a splat
+      hover_off: function() {},   // add a custom function to be called when hovering off a splat
+      splat_count: 20,            // number of splats that will be drawn
+      min_font_size: 20,          // minimum font size for splats
+      max_font_size: 300,         // maximum font size for splats
+      height: $(window).height(), // height of splatter
+      width: $(window).width()    // width of splatter
     }
   }
 
@@ -101,12 +101,19 @@
                 });
                 
                 for (var i=0; i < config.splat_count; i++) {
+                  var font_size = randomized_font_size();
+                  var line_height = (font_size * 0.78)+'px'
+                  var height = config.splats.length == 0 ? (font_size * 0.31) : (font_size * 1)
+                  
                   var splat = $('<span>')
                     .text(determine_splat_type())
                     .addClass('splat')
                     .css({
                       'position': 'absolute',
-                      'font-size': randomized_font_size(),
+                      'overflow': 'hidden',
+                      'line-height': line_height,
+                      'height': height,
+                      'font-size': font_size,
                       'top': randomized_top(),
                       'left': randomized_right(),
                       'color': radomized_color()
@@ -118,6 +125,12 @@
                   
                   splatter_box.append(splat);
                 };
+                
+                // font-size: 288px;
+                // height = font-size * 0.3
+                // line-height = font-size * 0.76
+                // height: 88px;
+                // line-height: 218px;
                 
             })
         }

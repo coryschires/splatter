@@ -25,6 +25,10 @@ describe("jquery.splatter", function() {
       var splat = callee.splatter().find('span').first();
       expect(splat).toHaveInlineStyle('position', 'absolute');
     });
+    it("should set each 'splat' to overflow hidden", function() {
+      var splat = callee.splatter().find('span').first();
+      expect(splat).toHaveInlineStyle('overflow', 'hidden');
+    });
   });
   
   describe('randomized font size', function() {
