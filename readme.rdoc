@@ -4,7 +4,7 @@ Splatter is a jQuery plugin which applies a random position, size, and color to 
 
 http://coryschires-blog-post-images.s3.amazonaws.com/splatter/basic_splatter.jpg
 
-To see some working examples, check out the {demo page}[url-to-demos].
+To see some working examples, check out the {demo page}[http://www.demos.coryschires.com/splatter/].
 
 == Basic usage.
 
@@ -84,4 +84,4 @@ Which will create something like:
 
 http://coryschires-blog-post-images.s3.amazonaws.com/splatter/hover_splatter.jpg
 
-If you need additional help understanding the various configuration options, check out the {live demos}[demos-url] as well as the {unit tests}[tests page url]
+If you need additional help understanding the various configuration options, check out the {live demos}[http://www.demos.coryschires.com/splatter/] as well as the {unit tests}[https://github.com/coryschires/splatter/blob/master/spec/splatter_spec.js].
