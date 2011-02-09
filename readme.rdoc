@@ -29,7 +29,7 @@ http://coryschires-blog-post-images.s3.amazonaws.com/splatter/word_splatter.jpg
 
 Splatter has lots of configuration options but most of them are pretty simple and none of them are required:
 
-    $('#splatter_box).splatter({
+    $('#splatter_box').splatter({
       custom_attributes: [],      // specify custom attributes to add to splats which can be used to store data
       colors: [],                 // specify the colors to be randomly applied to the splats
       splats: [],                 // specify strings to be used as splats – defaults to * 
@@ -44,7 +44,7 @@ Splatter has lots of configuration options but most of them are pretty simple an
 
 Most of these should be fairly obvious but let's go into a bit more detail on how to use custom attributes. Custom attributes allow you to apply data attributes with random values to each splat. They are specified as an array of objects:
 
-    $('#splatter_box).splatter({
+    $('#splatter_box').splatter({
       custom_attributes: [
         { name: "data-hover_color", values: ['#f68a00', '#069', '#a70'] },
         { name: "data-slide_position", values: ['20', '50', '100'] }
