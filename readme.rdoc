@@ -1,6 +1,6 @@
 == jQuery Splatter Plugin.
 
-Splatter is a jQuery plugin which applies a random position, size, and color to elements on a element. The most basic implementation adds randomly colored and positioned asterisks to the element:
+Splatter is a jQuery plugin which applies a random position, size, and color to elements on a page. The most basic implementation adds randomly colored and positioned asterisks to the element:
 
 http://coryschires-blog-post-images.s3.amazonaws.com/splatter/basic_splatter.jpg
 
