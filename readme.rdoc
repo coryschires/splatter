@@ -8,7 +8,7 @@ To see some working examples, check out the {demo page}[url-to-demos].
 
 == Basic usage.
 
-Add these in the <tt>head</tt> element of your page:
+Add these scripts in the <tt>head</tt> element of your page:
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="jquery.splatter.js" type="text/javascript" charset="utf-8"></script>
@@ -22,6 +22,7 @@ Invoke the plugin, specifying configuration options as needed. For example, pass
   });
 
 Which creates:
+
 http://coryschires-blog-post-images.s3.amazonaws.com/splatter/word_splatter.jpg
 
 == Configuration options.
