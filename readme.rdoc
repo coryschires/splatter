@@ -80,6 +80,15 @@ Often custom attributes go work in conjunction with custom hover events, allowin
       }
     });
     
+    // and some CSS3 to handle the color transitions
+    .splatter_box .splat {
+      transition: color 0.5s linear;
+      -moz-transition: color 0.5s linear;
+      -o-transition: color 0.5s linear;
+      -webkit-transition: color 0.5s linear;
+      cursor: pointer;
+    }
+    
 Which will create something like:
 
 http://coryschires-blog-post-images.s3.amazonaws.com/splatter/hover_splatter.jpg
