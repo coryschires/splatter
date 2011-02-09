@@ -22,7 +22,6 @@ Invoke the plugin, specifying configuration options as needed. For example, pass
   });
 
 Which creates:
-
 http://coryschires-blog-post-images.s3.amazonaws.com/splatter/word_splatter.jpg
 
 == Configuration options.
