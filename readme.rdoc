@@ -58,7 +58,7 @@ So the the above example might create splats that look like:
     <span class="splat" data-slide_position="20" data-hover_color="#f68a00">*</span>
     <span class="splat" data-slide_position="100" data-hover_color="#069">*</span>
     
-Often custom attributes go work in conjunction with custom hover events, allowing you to use jQuery to fetch these custom values and do something interesting (e.g. fade in a difference color, animate a splats position, or make a splat randomly rotate). For example, let's create 100 splats in shades of gray that fade into random colors on hover:
+Often custom attributes work in conjunction with custom hover events, allowing you to use jQuery to fetch these custom values and do something interesting (e.g. fade in a different color, animate a splats position, or make a splat randomly rotate). For example, let's create 100 splats in shades of gray that fade into random colors on hover:
 
     $('#animated_colors').splatter({
       width: 700,
