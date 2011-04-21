@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>jQuery Splatter</title>
+
+<!-- stylesheets -->
+<style type="text/css" media="screen">
+  body { overflow-x: hidden; color: #333; font-family: Helvetica, sans-serif; }
+  #page_wrap { width: 970px; margin: 0 auto; }
+  #documentation { display: block; float: right;}
+  .example h3 { border-bottom: 2px solid #e0e0e0; margin: 100px 0 10px; padding-bottom: 5px; }
+  .example.first h3 { margin-top: 20px; }
+  .example .wrap { height: 400px; }
+  .example code pre { background: #e0e0e0; padding: 20px 20px 20px 0; overflow: auto; }
+
+  /* CSS3 for custom animations */
+  #animated_colors.splatter_box .splat {
+    transition: color 0.5s linear;
+    -moz-transition: color 0.5s linear;
+    -o-transition: color 0.5s linear;
+    -webkit-transition: color 0.5s linear;
+    cursor: pointer;
+  }
+  #rotating_splats.splatter_box .splat {
+    -webkit-transform-origin:0 0;
+    -webkit-transform: rotate(0deg);
+    -webkit-transition:-webkit-transform 0.2s ease-in-out;
+    cursor: pointer;
+  }
+</style>
+
+<!-- javascripts -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://github.com/coryschires/splatter/raw/master/src/jquery.splatter.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+
+    // 1) simple_splatter
+    $('#simple_splatter').splatter({
+      height: 250,
+      width: 700
+    });
+
+    // 2) many splatters
+    $('#many_splatters').splatter({
+      height: 250,
+      width: 700,
+      splat_count: 120
+    });
+
+    // 3) word_splatter
+    $('#word_splatter').splatter({
+      height: 250,
+      width: 700,
+      min_font_size: 20,
+      max_font_size: 50,
+      splats: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Consectetur", "Adipisicing", "Elit", "Sed", "Do", "Eiusmod", "Tempor", "Incididunt", "Ut", "Labore", "Et", "Dolore", "Magna", "Aliqua", "Ut", "Enim", "Ad", "Minim", "Veniam", "Quis", "Nostrud", "Exercitation", "Ullamco", "Laboris", "Nisi", "Ut", "Aliquip", "Ex", "Ea", "Commodo", "Consequat"]
+    });
+    
+    // 4) Gray words
+    $('#gray_words').splatter({
+      height: 250,
+      width: 700,
+      min_font_size: 20,
+      max_font_size: 50,
+      colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
+      splats: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Consectetur", "Adipisicing", "Elit", "Sed", "Do", "Eiusmod", "Tempor", "Incididunt", "Ut", "Labore", "Et", "Dolore", "Magna", "Aliqua", "Ut", "Enim", "Ad", "Minim", "Veniam", "Quis", "Nostrud", "Exercitation", "Ullamco", "Laboris", "Nisi", "Ut", "Aliquip", "Ex", "Ea", "Commodo", "Consequat"]
+    });
+    
+    // 5) animated colors
+    $('#animated_colors').splatter({
+      width: 700,
+      height: 250,
+      splat_count: 100,
+      colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
+      custom_attributes: [
+        { name: "data-hover_color", values: ['#f68a00', '#069', '#a70', '#090', '#ff1493', '#0066CC', '#ff1493', '#F0E356'] }
+      ],
+      hover_on: function(splat) {
+        var original_color = splat.css('color');
+        var hover_color = splat.attr('data-hover_color')
+        splat.css('color', hover_color).attr('data-hover_color', original_color);
+      },
+      hover_off: function(splat) {
+        var original_color = splat.css('color');
+        var hover_color = splat.attr('data-hover_color');
+        splat.css('color', hover_color).attr('data-hover_color', original_color);
+      }
+    });
+    
+    // 6) rotating_splats
+    $('#rotating_splats').splatter({
+      height: 250,
+      width: 700,
+      splat_count: 300,
+      max_font_size: 150,
+      custom_attributes: [
+        { name: "data-rotation_degrees", values: ['rotate(180deg)', 'rotate(90deg)', 'rotate(25deg)', 'rotate(360deg)' ] }
+      ],
+      hover_on : function(splat) {
+        var rotation_degrees = splat.attr('data-rotation_degrees');
+        splat.css('-webkit-transform', rotation_degrees);
+      },
+      hover_off : function(splat) {
+        splat.css('-webkit-transform', 'rotate(0deg)');
+      }
+    });
+  });
+</script>
+
+
+</head>
+<body>
+<div id="page_wrap">
+  <a href="https://github.com/coryschires/splatter" id="documentation">Back to the documentation</a>
+  <h1>jQuery Splatter Plugin</h1>
+  
+  
+  <div class="first example">
+    <h3>A very simple example.</h3>
+    <div class="wrap"><div id="simple_splatter"></div></div>
+    <code>
+      <pre>
+        $('#simple_splatter').splatter({
+          height: 250,
+          width: 700
+        });</pre>
+    </code>
+  </div>
+
+
+  <div class="example">
+    <h3>Let's say you want more splats.</h3>
+    <div class="wrap"><div id="many_splatters"></div></div>
+    <code>
+      <pre>
+        $('#many_splatters').splatter({
+          height: 250,
+          width: 700,
+          splat_count: 120
+        });</pre>
+    </code>
+  </div>
+  
+  
+  <div class="example">
+    <h3>And if you'd rather use words.</h3>
+    <div class="wrap"><div id="word_splatter"></div></div>
+    <code>
+      <pre>
+        $('#word_splatter').splatter({
+          height: 250,
+          width: 700,
+          min_font_size: 20,
+          max_font_size: 50,
+          splats: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Consectetur", "Adipisicing", "Elit", "Sed", "Do", "Eiusmod", "Tempor", "Incididunt", "Ut", "Labore", "Et", "Dolore", "Magna", "Aliqua", "Ut", "Enim", "Ad", "Minim", "Veniam", "Quis", "Nostrud", "Exercitation", "Ullamco", "Laboris", "Nisi", "Ut", "Aliquip", "Ex", "Ea", "Commodo", "Consequat"]
+        });</pre>
+    </code>
+  </div>
+
+  <div class="example">
+    <h3>Suppose you don't want random colors.</h3>
+    <div class="wrap"><div id="gray_words"></div></div>
+    <code>
+      <pre>
+        $('#gray_words').splatter({
+          height: 250,
+          width: 700,
+          min_font_size: 20,
+          max_font_size: 50,
+          colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
+          splats: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Consectetur", "Adipisicing", "Elit", "Sed", "Do", "Eiusmod", "Tempor", "Incididunt", "Ut", "Labore", "Et", "Dolore", "Magna", "Aliqua", "Ut", "Enim", "Ad", "Minim", "Veniam", "Quis", "Nostrud", "Exercitation", "Ullamco", "Laboris", "Nisi", "Ut", "Aliquip", "Ex", "Ea", "Commodo", "Consequat"]
+        });</pre>
+    </code>
+  </div>
+
+  <div class="example">
+    <h3>Splats that animate color on hover.</h3>
+    <div class="wrap"><div id="animated_colors"></div></div>
+    <code>
+      <pre>
+      // javascript
+      $('#animated_colors').splatter({
+        width: 700,
+        height: 250,
+        splat_count: 100,
+        colors: ['#ccc', '#e0e0e0', '#333', '#666', '#999'],
+        custom_attributes: [
+          { name: "data-hover_color", values: ['#f68a00', '#069', '#a70', '#090', '#ff1493', '#0066CC', '#ff1493', '#F0E356'] }
+        ],
+        hover_on: function(splat) {
+          var original_color = splat.css('color');
+          var hover_color = splat.attr('data-hover_color')
+          splat.css('color', hover_color).attr('data-hover_color', original_color);
+        },
+        hover_off: function(splat) {
+          var original_color = splat.css('color');
+          var hover_color = splat.attr('data-hover_color');
+          splat.css('color', hover_color).attr('data-hover_color', original_color);
+        }
+      });
+    
+      // CSS3 for color animations
+      #animated_colors.splatter_box .splat {
+        transition: color 0.5s linear;
+        -moz-transition: color 0.5s linear;
+        -o-transition: color 0.5s linear;
+        -webkit-transition: color 0.5s linear;
+        cursor: pointer;
+      }</pre>
+    </code>
+  </div>
+  
+  <div class="example">
+    <h3>Splats that rotate on hover.</h3>
+    <div class="wrap"><div id="rotating_splats"></div></div>
+    <code>
+      <pre>
+        $('#rotating_splats').splatter({
+          height: 250,
+          width: 700,
+          splat_count: 300,
+          max_font_size: 150,
+          custom_attributes: [
+            { name: "data-rotation_degrees", values: ['rotate(180deg)', 'rotate(90deg)', 'rotate(25deg)', 'rotate(360deg)' ] }
+          ],
+          hover_on : function(splat) {
+            var rotation_degrees = splat.attr('data-rotation_degrees');
+            splat.css('-webkit-transform', rotation_degrees);
+          },
+          hover_off : function(splat) {
+            splat.css('-webkit-transform', 'rotate(0deg)');
+          }
+        });
+        
+        // css3 for rotation
+        #rotating_splats.splatter_box .splat {
+          -webkit-transform-origin:0 0;
+          -webkit-transform: rotate(0deg);
+          -webkit-transition:-webkit-transform 0.2s ease-in-out;
+          cursor: pointer;
+        }</pre>
+    </code>
+  </div>
+
+</div><!-- page_wrap -->
+</body>
+</html>
