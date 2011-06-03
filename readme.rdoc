@@ -98,10 +98,10 @@ If you need additional help understanding the various configuration options, che
 == Creating splatters that don't overlap.
 I considered building this feature into the plugin but decided against it since it conflicts somewhat with the general idea of keeping things random. But if you're looking to prevent overlapping it's pretty simple.
 
-First, add some scripts to your header. Notice we're also adding {jquery.masonary.js}[http://masonry.desandro.com/], so be sure to include this plugin as well.
+First, add some scripts to your header. Notice we're also adding {jquery.masonry.js}[http://masonry.desandro.com/], so be sure to include this plugin as well.
 
   <script src="lib/jquery.local.js" type="text/javascript"></script>
-  <script src="lib/jquery.masonary.js" type="text/javascript"></script>
+  <script src="lib/jquery.masonry.js" type="text/javascript"></script>
   <script src="src/jquery.splatter.js" type="text/javascript"></script>
 
 Next, call <tt>splatter()</tt> as normal, passing whatever configuration options you like:
