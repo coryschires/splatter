@@ -30,16 +30,18 @@ http://coryschires-blog-post-images.s3.amazonaws.com/splatter/word_splatter.jpg
 Splatter has lots of configuration options but most of them are pretty simple and none of them are required:
 
     $('#splatter_box').splatter({
-      custom_attributes: [],      // specify custom attributes to add to splats which can be used to store data
-      colors: [],                 // specify the colors to be randomly applied to the splats
-      splats: [],                 // specify strings to be used as splats – defaults to * 
-      hover_on: function() {},    // add a custom function to be called when hovering on a splat
-      hover_off: function() {},   // add a custom function to be called when hovering off a splat
-      splat_count: 20,            // number of splats that will be drawn
-      min_font_size: 20,          // minimum font size for splats
-      max_font_size: 300,         // maximum font size for splats
-      height: $(window).height(), // height of splatter
-      width: $(window).width()    // width of splatter
+      custom_attributes: [],                    // specify custom attributes to add to splats which can be used to store data
+      colors: [],                               // specify the colors to be randomly applied to the splats
+      splats: [],                               // specify strings to be used as splats – defaults to * 
+      hover_on: function() {},                  // add a custom function to be called when hovering on a splat
+      hover_off: function() {},                 // add a custom function to be called when hovering off a splat
+      splat_count: 20,                          // number of splats that will be drawn
+      min_font_size: 20,                        // minimum font size for splats
+      max_font_size: 300,                       // maximum font size for splats
+      height: $(window).height(),               // height of splatter
+      width: $(window).width()                  // width of splatter
+      position: { top: false, left: false }     // explicitly set top and left position of all splats – useful if, for example, 
+                                                //    you'd like to draw a splat inside a click event (credit github.com/mithro)
     });
 
 Most of these should be fairly obvious but let's go into a bit more detail on how to use custom attributes. Custom attributes allow you to apply data attributes with random values to each splat. They are specified as an array of objects:
