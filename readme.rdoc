@@ -96,24 +96,22 @@ http://coryschires-blog-post-images.s3.amazonaws.com/splatter/hover_splatter.jpg
 If you need additional help understanding the various configuration options, check out the {live demos}[http://coryschires.github.com/splatter/] as well as the {unit tests}[https://github.com/coryschires/splatter/blob/master/spec/splatter_spec.js].
 
 == Creating splatters that don't overlap.
-I considered building this feature into the plugin but decided against it since conflicts somewhat with the general idea of keeping things random. But if you're looking to prevent overlapping it's pretty simple.
+I considered building this feature into the plugin but decided against it since it conflicts somewhat with the general idea of keeping things random. But if you're looking to prevent overlapping it's pretty simple.
 
-First, add the normal scripts to your header. 
+First, add some scripts to your header. Notice we're also adding {jquery.masonary.js}[http://masonry.desandro.com/], so be sure to include this plugin as well.
 
   <script src="lib/jquery.local.js" type="text/javascript"></script>
   <script src="lib/jquery.masonary.js" type="text/javascript"></script>
   <script src="src/jquery.splatter.js" type="text/javascript"></script>
 
-Notice we're also adding {jquery.masonary.js}[http://masonry.desandro.com/], so be sure to include this plugin as well.
-
-Next, call <tt>splatter</tt> as normal, passing whatever configuration options you like:
+Next, call <tt>splatter()</tt> as normal, passing whatever configuration options you like:
 
   $('#splatter').splatter({
     height: 250,
     width: 700
   });
 
-Then, call <tt>masonry</tt> on that same element:
+Then, call <tt>masonry()</tt> on that same element:
 
   $('#splatter').masonry();
 
@@ -128,6 +126,6 @@ Finally, you'll need to override a bit of CSS to ensure your divs don't overlap.
 
 You should get splats that you look decently random but do not overlap:
 
-http://coryschires-blog-post-images.s3.amazonaws.com/splatter/no_overlap_splatter.jpg
+http://coryschires-blog-post-images.s3.amazonaws.com/splatter/no_overlap_splatter.png
 
 
