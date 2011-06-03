@@ -17,17 +17,18 @@
 
   $.splatter = {
     defaults: {
-      custom_attributes: [],            // specify custom attributes to add to splats which can be used to store data
-      colors: [],                       // specify the colors to be randomly applied to the splats
-      splats: [],                       // specify strings to be used as splats – defaults to * 
-      hover_on: function() {},          // add a custom function to be called when hovering on a splat
-      hover_off: function() {},         // add a custom function to be called when hovering off a splat
-      splat_count: 20,                  // number of splats that will be drawn
-      min_font_size: 20,                // minimum font size for splats
-      max_font_size: 300,               // maximum font size for splats
-      height: $(window).height(),       // height of splatter
-      width: $(window).width(),         // width of splatter
-      allow_splats_to_overlap: true    // set to false if you don't want your splats to overlap
+      custom_attributes: [],                    // specify custom attributes to add to splats which can be used to store data
+      colors: [],                               // specify the colors to be randomly applied to the splats
+      splats: [],                               // specify strings to be used as splats – defaults to * 
+      hover_on: function() {},                  // add a custom function to be called when hovering on a splat
+      hover_off: function() {},                 // add a custom function to be called when hovering off a splat
+      splat_count: 20,                          // number of splats that will be drawn
+      min_font_size: 20,                        // minimum font size for splats
+      max_font_size: 300,                       // maximum font size for splats
+      height: $(window).height(),               // height of splatter
+      width: $(window).width(),                 // width of splatter
+      position: { top: false, left: false }     // explicitly set top and left position of all splats – useful if, for example, 
+                                                //    you'd like to draw a splat inside a click event (credit github.com/mithro)
     }
   }
 
@@ -48,11 +49,11 @@
             };
 
             var css_top = function() {
-              return Math.floor( Math.random() * config.height);
+              return config.position.top ? config.position.top : Math.floor( Math.random() * config.height);
             };
             
-            var css_right = function() {
-              return Math.floor( Math.random() * config.width);
+            var css_left = function() {
+              return config.position.left ? config.position.left : Math.floor( Math.random() * config.width);
             };
             
             var css_color = function() {
@@ -88,7 +89,7 @@
                   'height': height,
                   'position': 'absolute', 
                   'top': css_top(), 
-                  'left': css_right()
+                  'left': css_left()
                 });
 
               return splat;

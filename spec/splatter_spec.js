@@ -136,7 +136,17 @@ describe("jquery.splatter", function() {
         expect(['#cccccc', '#e0e0e0', '#333333', '#666666', '#999999']).toContain(rgb2hex(color));
       });
     });
-
+    
+    it("position option should allow you to specify a css top and left value for all splats", function() {
+      callee.splatter({
+        splat_count: 1,
+        position: { top: 12, left: 10 }
+      });
+      var splat = callee.find('.splat');
+      expect(splat.css('top')).toEqual('12px');
+      expect(splat.css('left')).toEqual('10px');
+    });
+    
     describe('custom attributes', function() {
       it("should should apply the specified attribute name to each splat", function() {
         var splat = callee.splatter({ 
