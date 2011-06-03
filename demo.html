@@ -1,7 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>jQuery Splatter</title>
@@ -9,12 +7,14 @@
 <!-- stylesheets -->
 <style type="text/css" media="screen">
   body { overflow-x: hidden; color: #333; font-family: Helvetica, sans-serif; }
+  em { color: #95A105; font-style: normal; }
   #page_wrap { width: 970px; margin: 0 auto; }
-  #documentation { display: block; float: right;}
+  header #documentation { display: block; float: right;}
   .example h3 { border-bottom: 2px solid #e0e0e0; margin: 100px 0 10px; padding-bottom: 5px; }
   .example.first h3 { margin-top: 20px; }
   .example .wrap { height: 400px; }
   .example code pre { background: #e0e0e0; padding: 20px 20px 20px 0; overflow: auto; }
+  .example .wrap div { height: 250; width: 700 }
 
   /* CSS3 for custom animations */
   #animated_colors.splatter_box .splat {
@@ -30,10 +30,18 @@
     -webkit-transition:-webkit-transform 0.2s ease-in-out;
     cursor: pointer;
   }
+  #no_overlap_splats {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    float: left;
+  }
 </style>
 
 <!-- javascripts -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="lib/jquery.local.js" type="text/javascript"></script>
+<script src="lib/jquery.masonary.js" type="text/javascript" charset="utf-8"></script>
 <script src="src/jquery.splatter.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript" charset="utf-8">
@@ -109,6 +117,15 @@
         splat.css('-webkit-transform', 'rotate(0deg)');
       }
     });
+    
+    // no_overlap_splats
+    $('#no_overlap_splats').splatter({
+      height: 250,
+      width: 800,
+      splat_count: 50
+    });
+    
+    $('#no_overlap_splats').masonry();
   });
 </script>
 
@@ -116,9 +133,10 @@
 </head>
 <body>
 <div id="page_wrap">
-  <a href="https://github.com/coryschires/splatter" id="documentation">Back to the documentation</a>
-  <h1>jQuery Splatter Plugin</h1>
-  
+  <header>
+    <a href="https://github.com/coryschires/splatter" id="documentation">Back to documentation</a>
+    <h1>jQuery <em>Splatter</em> Plugin</h1>
+  </header>  
   
   <div class="first example">
     <h3>A very simple example.</h3>
@@ -246,6 +264,34 @@
         }</pre>
     </code>
   </div>
+
+
+  <div class="example">
+    <h3>Splats that don't overlap (depends on <a href="http://masonry.desandro.com/" title="jQuery Masonry">jquery.masonary.js</a>).</h3>
+    <div class="wrap"><div id="no_overlap_splats"></div></div>
+    <div style="clear:both;"></div>
+    <code>
+      <pre>
+        $('#no_overlap_splats').splatter({
+          height: 250,
+          width: 800,
+          splat_count: 50
+        });
+
+        // you'll need to include the masonry plugin. Checkout the readme for details.
+        $('#no_overlap_splats').masonry();
+        
+        // And override a bit of CSS
+        #no_overlap_splats {
+          position: static !important;
+          top: auto !important;
+          left: auto !important;
+          float: left;
+        }
+        </pre>
+    </code>
+  </div>
+
 
 </div><!-- page_wrap -->
 </body>

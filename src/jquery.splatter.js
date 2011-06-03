@@ -17,16 +17,17 @@
 
   $.splatter = {
     defaults: {
-      custom_attributes: [],      // specify custom attributes to add to splats which can be used to store data
-      colors: [],                 // specify the colors to be randomly applied to the splats
-      splats: [],                 // specify strings to be used as splats – defaults to * 
-      hover_on: function() {},    // add a custom function to be called when hovering on a splat
-      hover_off: function() {},   // add a custom function to be called when hovering off a splat
-      splat_count: 20,            // number of splats that will be drawn
-      min_font_size: 20,          // minimum font size for splats
-      max_font_size: 300,         // maximum font size for splats
-      height: $(window).height(), // height of splatter
-      width: $(window).width()    // width of splatter
+      custom_attributes: [],            // specify custom attributes to add to splats which can be used to store data
+      colors: [],                       // specify the colors to be randomly applied to the splats
+      splats: [],                       // specify strings to be used as splats – defaults to * 
+      hover_on: function() {},          // add a custom function to be called when hovering on a splat
+      hover_off: function() {},         // add a custom function to be called when hovering off a splat
+      splat_count: 20,                  // number of splats that will be drawn
+      min_font_size: 20,                // minimum font size for splats
+      max_font_size: 300,               // maximum font size for splats
+      height: $(window).height(),       // height of splatter
+      width: $(window).width(),         // width of splatter
+      allow_splats_to_overlap: true    // set to false if you don't want your splats to overlap
     }
   }
 
@@ -40,21 +41,21 @@
             }();
             
             // private functions
-            var randomized_font_size = function() {
+            var css_font_size = function() {
               var min = config.min_font_size;
               var max = config.max_font_size;
               return Math.floor( Math.random() * (max - min) ) + min;
             };
 
-            var randomized_top = function() {
+            var css_top = function() {
               return Math.floor( Math.random() * config.height);
             };
             
-            var randomized_right = function() {
+            var css_right = function() {
               return Math.floor( Math.random() * config.width);
             };
             
-            var radomized_color = function() {
+            var css_color = function() {
               
               if (config.colors.length > 0) {
                 return config.colors[Math.floor( Math.random() * config.colors.length)];
@@ -67,9 +68,31 @@
               }
             };
             
-            var determine_splat_type = function() {
+            var splat_text = function() {
               return config.splats.length > 0 ? config.splats.pop() : '*';
             };
+            
+            var draw_splat = function() {
+              var font_size = css_font_size();
+              var line_height = (font_size * 0.78)+'px' 
+              var height = config.splats.length == 0 ? (font_size * 0.31) : (font_size * 1)
+
+              var splat = $('<span>')
+                .text(splat_text())
+                .addClass('splat')
+                .css({
+                  'font-size': font_size,
+                  'color': css_color(), 
+                  'overflow': 'hidden',
+                  'line-height': line_height,
+                  'height': height,
+                  'position': 'absolute', 
+                  'top': css_top(), 
+                  'left': css_right()
+                });
+
+              return splat;
+            }
             
             var apply_custom_attributes = function(splat) {
               if (config.custom_attributes.length > 0) {
@@ -98,26 +121,11 @@
                     'position': 'relative',
                     'height': config.height,
                     'width': config.width
-                });
+                  });
                 
                 for (var i=0; i < config.splat_count; i++) {
-                  var font_size = randomized_font_size();
-                  var line_height = (font_size * 0.78)+'px'
-                  var height = config.splats.length == 0 ? (font_size * 0.31) : (font_size * 1)
                   
-                  var splat = $('<span>')
-                    .text(determine_splat_type())
-                    .addClass('splat')
-                    .css({
-                      'position': 'absolute',
-                      'overflow': 'hidden',
-                      'line-height': line_height,
-                      'height': height,
-                      'font-size': font_size,
-                      'top': randomized_top(),
-                      'left': randomized_right(),
-                      'color': radomized_color()
-                    });
+                  var splat = draw_splat();
                   
                   apply_custom_attributes(splat);
                   
@@ -125,13 +133,6 @@
                   
                   splatter_box.append(splat);
                 };
-                
-                // font-size: 288px;
-                // height = font-size * 0.3
-                // line-height = font-size * 0.76
-                // height: 88px;
-                // line-height: 218px;
-                
             })
         }
     })
