@@ -39,7 +39,7 @@ Splatter has lots of configuration options but most of them are pretty simple an
       min_font_size: 20,                        // minimum font size for splats
       max_font_size: 300,                       // maximum font size for splats
       height: $(window).height(),               // height of splatter
-      width: $(window).width()                  // width of splatter
+      width: $(window).width(),                 // width of splatter
       position: { top: false, left: false }     // explicitly set top and left position of all splats – useful if, for example, 
                                                 //    you'd like to draw a splat inside a click event (credit github.com/mithro)
     });
